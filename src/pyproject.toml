@@ -1,0 +1,14 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "sandbox"
+authors = [{name = "Sóley Hyman"}]
+dynamic = ["version"]
+description = "Code for TIMESTEP Software Engineering Internship"
+dependencies = [
+    "numpy >= 1.14",
+    "scipy >= 0.19",
+    "matplotlib"
+]
