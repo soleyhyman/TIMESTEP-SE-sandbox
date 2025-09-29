@@ -132,7 +132,7 @@ class quadratic:
 
         if roots==True:
             allRoots = self.roots()
-            realRoots = allRoots[np.isreal(allRoots)]
+            realRoots = np.real(allRoots[np.isreal(allRoots)])
             ax.plot(realRoots, np.zeros_like(realRoots), marker="o", ls="None")
         
         if showPlot==True:
