@@ -7,16 +7,59 @@ import matplotlib.pyplot as plt
 
 class quadratic:
     """
-    Add description of class here and format the quadratic equation (i.e., y = ax^2 + bx + c) in rst/LaTeX. 
+    This class stores parameters for the quadratic equation
+     
+    .. math::
+        y = ax^2 + bx + c
+    
+    and performs related operations, such as vertex and root finding.
 
     Attributes
     ----------
-    Add the attributes, which IN THIS CASE are the same as the __init__ parameters
-    (if other functions set attributes, you'll need to add them here too)
+    a : float
+            a parameter in quadratic equation
+    b : float
+        b parameter in quadratic equation
+    c : float
+        c parameter in quadratic equation
 
     Examples
     --------
-    Add an example of how to use the class with a >>> code marker and the printout result below it.
+    After importing the class, you can define a quadratic object as:
+    
+    >>> from core import quadratic
+    >>> quad = quadratic(1.,2.,3.)    
+
+    To calculate the slope, run:
+
+    >>> quad(1.)
+    6.0
+
+    To calculate the roots (or x-intercepts), run:
+
+    >>> quad.roots()
+    ((-1+1.4142135623730951j), (-1-1.4142135623730951j))
+
+    Notice that both roots are imaginary. 
+
+    To calculate the y-intercept, run:
+
+    >>> quad.yIntercept()
+    3.0
+
+    To plot the quadratic equation, we need to supply an array of x-value and then can use ``quadratic.plot``:
+
+    >>> import numpy as np
+    >>> x = np.array(-10.,10.)
+    >>> quad.plot(x)
+
+    In this case, the roots are imaginary, so they're not plotted here, but if we specify an equation with negative roots, we'll see them plotted on the graph:
+
+    >>> import numpy as np
+    >>> from core import quadratic
+    >>> x = np.linspace(-10.,10.)
+    >>> quad = quadratic(1.,2.,-3.)
+    >>> quad.plot(x)
     """
     def __init__(self, a, b, c):
         """
@@ -35,17 +78,17 @@ class quadratic:
 
     def __call__(self, x):
         """
-        _summary_
+        Get the value of the quadratic for x
 
         Parameters
         ----------
-        x : _type_
-            _description_
+        x : float or ndarray
+            Value(s) of x at which to evaluate the quadratic
 
         Returns
         -------
-        _type_
-            _description_
+        float or ndarray
+            Value(s) of the quadratic at x
         """
         return self.a*x**2 + self.b*x + self.c
     
@@ -76,12 +119,12 @@ class quadratic:
     
     def vertex(self):
         """
-        _summary_
+        Calculate the vertex of the quadratic
 
         Returns
         -------
-        _type_
-            _description_
+        2x1 array
+            (x,y) coordinate of the vertex
         """
         foura = 4.*self.a
         D = self.b*self.b - foura*self.c
@@ -89,30 +132,30 @@ class quadratic:
     
     def plot(self, x, roots=True, originAxes=True, showPlot=True, styleKwargs={"color":"k", "lw":1}):
         """
-        _summary_
+        Plot the quadratic with the roots shown and the origin axes plotted, if desired.
 
         Parameters
         ----------
-        x : _type_
-            _description_
+        x : array_like
+            1-d array of x values to plot the quadratic at, must have at least 3 elements
         roots : bool, optional
-            _description_, by default True
+            Roots (x-intercepts) of the quadratic, by default True
         originAxes : bool, optional
-            _description_, by default True
+            Plot origin axes (x=0,y=0) if True, by default True
         showPlot : bool, optional
-            _description_, by default True
+            Show plot if True, return fig,ax objects if False, by default True
         styleKwargs : dict, optional
-            _description_, by default {"color":"k", "lw":1}
+            kwargs for origin axes, by default {"color":"k", "lw":1}
 
         Returns
         -------
-        _type_
-            _description_
+        None or fig, ax
+            Matplotlib figure and axes if showPlot is False, otherwise returns None
 
         Raises
         ------
         TypeError
-            _description_
+            Raises error if supplied x is not 1d array_like object with at least 3 elements
         """
         if not isinstance(x,np.ndarray):
             x = np.array([x])
