@@ -114,7 +114,8 @@ class quadratic:
         TypeError
             _description_
         """
-        x = np.array([x])
+        if not isinstance(x,np.ndarray):
+            x = np.array([x])
         if np.issubdtype(x.dtype,np.number) and x.ndim==1 and x.size>=3:
             pass
         else:
