@@ -122,6 +122,7 @@ class quadratic:
             raise TypeError("x must be a 1d list or ndarray with at least 3 elements.")
 
         fig,ax = plt.subplots()
+        ax.set_title(r'$y = {}x^2 {:+}x {:+}$'.format(self.a,self.b,self.c))
 
         if originAxes==True:
             ax.axhline(0, **styleKwargs)
