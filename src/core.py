@@ -126,7 +126,7 @@ class quadratic:
             ax.axhline(0, **styleKwargs)
             ax.axvline(0, **styleKwargs)
 
-        ax.plot(x, self.quadEq(x))
+        ax.plot(x, self.__call__(x))
         ax.set(xlabel="x", ylabel="y")
 
         if roots==True:
