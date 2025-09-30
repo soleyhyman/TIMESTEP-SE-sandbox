@@ -53,7 +53,7 @@ class quadratic:
     >>> x = np.array(-10.,10.)
     >>> quad.plot(x)
 
-    In this case, the roots are imaginary, so they're not plotted here, but if we specify an equation with negative roots, we'll see them plotted on the graph:
+    In this case, the roots are imaginary, so they're not plotted here, but if we specify an equation with real roots, we'll see them plotted on the graph:
 
     >>> import numpy as np
     >>> from core import quadratic
